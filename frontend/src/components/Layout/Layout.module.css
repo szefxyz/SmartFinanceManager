@@ -1,0 +1,23 @@
+.layout {
+  display: flex;
+}
+
+.mainContent {
+  position: relative;
+  left: 80px;
+  width: calc(100% - 80px);
+  transition: all 0.5s ease;
+  padding: 20px;
+}
+
+/* Gdy sidebar rozwinięty */
+.mainContent.active {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* Gdy sidebar zwinięty */
+.mainContent.closed {
+  left: 80px;
+  width: calc(100% - 80px);
+}

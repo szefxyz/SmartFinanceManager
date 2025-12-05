@@ -1,0 +1,21 @@
+@import "./variables.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: white;
+  color: #333;
+}

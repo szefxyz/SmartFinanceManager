@@ -1,0 +1,13 @@
+:root {
+  /* color variables */
+
+  /* bg color variables */
+  --bg-primary: #f9f9fb;
+  --bg-secondary: #222222;
+
+  /* border radius variables */
+  --border-radius-base: 5px;
+
+  /* box shadow */
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
