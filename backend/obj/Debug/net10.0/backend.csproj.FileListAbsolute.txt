@@ -1,28 +1,57 @@
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\appsettings.Development.json
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\appsettings.json
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\backend.staticwebassets.endpoints.json
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\backend.exe
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\backend.deps.json
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\backend.runtimeconfig.json
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\backend.dll
-F:\Github Projects\SmartFinanceManager\backend\bin\Debug\net10.0\backend.pdb
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\rpswa.dswa.cache.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.GeneratedMSBuildEditorConfig.editorconfig
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.AssemblyInfoInputs.cache
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.AssemblyInfo.cs
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.csproj.CoreCompileInputs.cache
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.MvcApplicationPartsAssemblyInfo.cache
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\rjimswa.dswa.cache.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\scopedcss\bundle\backend.styles.css
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\staticwebassets.build.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\staticwebassets.build.json.cache
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\staticwebassets.development.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\staticwebassets.build.endpoints.json
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\swae.build.ex.cache
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.dll
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\refint\backend.dll
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.pdb
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.genruntimeconfig.cache
-F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\ref\backend.dll
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/appsettings.Development.json
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/appsettings.json
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/backend.staticwebassets.endpoints.json
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/backend.exe
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/backend.deps.json
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/backend.runtimeconfig.json
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/backend.dll
+F:/Github Projects/SmartFinanceManager/backend/bin/Debug/net10.0/backend.pdb
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/rpswa.dswa.cache.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.GeneratedMSBuildEditorConfig.editorconfig
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.AssemblyInfoInputs.cache
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.AssemblyInfo.cs
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.csproj.CoreCompileInputs.cache
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.MvcApplicationPartsAssemblyInfo.cache
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/rjimswa.dswa.cache.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/rjsmrazor.dswa.cache.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/scopedcss/bundle/backend.styles.css
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.build.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.build.json.cache
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.development.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.build.endpoints.json
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/swae.build.ex.cache
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.dll
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/refint/backend.dll
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.pdb
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/backend.genruntimeconfig.cache
+F:/Github Projects/SmartFinanceManager/backend/obj/Debug/net10.0/ref/backend.dll
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/appsettings.Development.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/appsettings.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/backend.staticwebassets.endpoints.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/backend
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/backend.deps.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/backend.runtimeconfig.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/backend.dll
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/bin/Debug/net10.0/backend.pdb
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/rpswa.dswa.cache.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.GeneratedMSBuildEditorConfig.editorconfig
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.AssemblyInfoInputs.cache
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.AssemblyInfo.cs
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.csproj.CoreCompileInputs.cache
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.MvcApplicationPartsAssemblyInfo.cache
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.sourcelink.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/rjimswa.dswa.cache.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/rjsmrazor.dswa.cache.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/scopedcss/bundle/backend.styles.css
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.build.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.build.json.cache
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.development.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/staticwebassets.build.endpoints.json
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/swae.build.ex.cache
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.dll
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/refint/backend.dll
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.pdb
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/backend.genruntimeconfig.cache
+/Users/julia/dotnetProjekt/SmartFinanceManager/backend/obj/Debug/net10.0/ref/backend.dll
