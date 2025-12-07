@@ -1,24 +1,27 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services for MVC Controllers
 builder.Services.AddControllers();
 
-// Enable CORS for frontend
+// 🔹 DB – tutaj Twój connection string z appsettings.json
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// 🔹 CORS – żeby React mógł gadać z API
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", p =>
-        p.AllowAnyOrigin()
-         .AllowAnyMethod()
-         .AllowAnyHeader());
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:5173", "https://localhost:5173") // adres Twojego frontu
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
-
-// Map MVC controllers
+app.UseCors();
 app.MapControllers();
-
-app.MapGet("/", () => "SmartFinanceManager API (MVC) działa ✔️");
 
 app.Run();

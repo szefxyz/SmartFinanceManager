@@ -17,7 +17,7 @@
   height: 3.5rem;
 }
 
-.toggleButton {
+.sidebarHeader i {
   position: absolute;
   color: #fff;
   top: 1rem;
@@ -25,7 +25,6 @@
   font-size: 1.9rem;
   line-height: 50px;
   transform: translateX(-50%);
-  cursor: pointer;
 }
 
 .navList,
@@ -70,13 +69,15 @@
 .tooltip {
   position: absolute;
   top: 50%;
-  left: 70px;
+  left: 80px;
   transform: translateY(-50%);
-  background: var(--bg-primary);
-  color: #222;
-  padding: 0.3rem 0.6rem;
+  background: var(--bg-secondary);
+  padding: 0px 6px;
   border-radius: var(--border-radius-base);
+  border: none;
   font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-white);
   white-space: nowrap;
   box-shadow: var(--shadow-lg);
   opacity: 0;
@@ -84,14 +85,25 @@
   transition: opacity 0.25s ease;
 }
 
+.tooltip::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent var(--bg-secondary) transparent transparent;
+}
+
 .navItem:hover .tooltip {
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .sidebarContainer {
     position: fixed;
-    top: auto; /* wyłącz top */
+    top: auto;
     left: 0;
     right: 0;
     bottom: 0;
@@ -102,23 +114,23 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 48px;
   }
 
-  /* chowamy header z logo na mobile */
   .sidebarHeader {
     display: none;
   }
 
-  /* jedna lista – ikony w rządku */
   .navList,
   .bottomNav {
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 24px;
   }
 
   .navItem {
+    height: auto;
     width: auto;
     margin: 0;
   }
@@ -127,40 +139,25 @@
     min-width: 40px;
     height: 40px;
     line-height: 40px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
-  /* tooltips wyłączamy na mobile */
   .tooltip {
     position: absolute;
-    bottom: 60px;
+    top: -50%;
     left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-primary);
-    color: #222;
-    padding: 0.3rem 0.6rem;
-    border-radius: var(--border-radius-base);
-    font-size: 0.9rem;
-    white-space: nowrap;
-    box-shadow: var(--shadow-lg);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
+    transform: translateX(-50%) translateY(-100%);
   }
 
-  .tooltip::after {
+  .tooltip::before {
     content: "";
     position: absolute;
     bottom: -6px;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     border-width: 6px;
     border-style: solid;
-    border-color: #fff transparent transparent transparent;
-  }
-
-  .navItem:hover .tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-4px);
+    border-color: var(--bg-secondary) transparent transparent transparent;
   }
 }

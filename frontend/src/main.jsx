@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout.jsx";
 import { Home } from "./pages/Home/index.jsx";
+import { Payments } from "./pages/Payments/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        handle: { title: "Dashboard", showTimeFilters: false },
+      },
+      {
+        path: "payments",
+        element: <Payments />,
+        handle: { title: "Payments", showTimeFilters: true },
       },
     ],
   },

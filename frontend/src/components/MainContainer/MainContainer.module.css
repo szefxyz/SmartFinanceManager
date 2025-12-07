@@ -1,4 +1,27 @@
 .mainContainer {
-  margin: 0 auto;
-  margin-top: 50px;
+  padding: 32px;
+  margin-left: 80px;
+  width: calc(100% - 80px);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .mainContainer {
+    margin: 0 auto;
+    width: calc(100% - 64px);
+    padding: 16px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    margin-left: 0;
+    width: 100%;
+    padding: 16px;
+    gap: 24px;
+  }
 }

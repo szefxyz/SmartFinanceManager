@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className={styles.sidebarContainer}>
       <div className={styles.sidebarHeader}>
-        <i className={`bx bxs-wallet ${styles.toggleButton}`}></i>
+        <i className={`bx bxs-wallet`}></i>
       </div>
 
       <ul className={styles.navList}>
@@ -15,15 +15,21 @@ export default function Navbar() {
           </a>
         </li>
         <li className={styles.navItem}>
-          <a href="/">
-            <i className={`bx bxs-chart-line ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Analytics</span>
+          <a href="/payments">
+            <i className={`bx bx-wallet-note ${styles.navIcon}`}></i>
+            <span className={styles.tooltip}>Payments</span>
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="/">
-            <i className={`bx bxs-chart-line ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Analytics</span>
+            <i className={`bx bx bx-layers ${styles.navIcon}`}></i>
+            <span className={styles.tooltip}>Expense Categories</span>
+          </a>
+        </li>
+        <li className={styles.navItem}>
+          <a href="/">
+            <i className={`bx bxs-edit ${styles.navIcon}`}></i>
+            <span className={styles.tooltip}>Add Expense</span>
           </a>
         </li>
         <li className={styles.navItem}>
@@ -37,15 +43,10 @@ export default function Navbar() {
       <ul className={styles.bottomNav}>
         <li className={styles.navItem}>
           <a href="/">
-            <i className={`bx bxs-user ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Profile</span>
-          </a>
-        </li>
-
-        <li className={styles.navItem}>
-          <a href="/">
-            <i className={`bx bxs-cog ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Sign In</span>
+            <i
+              className={`bx bx-arrow-out-right-square-half ${styles.navIcon}`}
+            ></i>
+            <span className={styles.tooltip}>Log Out</span>
           </a>
         </li>
       </ul>

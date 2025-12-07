@@ -26,3 +26,4 @@ F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\refint\backend.
 F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.pdb
 F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.genruntimeconfig.cache
 F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\ref\backend.dll
+F:\Github Projects\SmartFinanceManager\backend\obj\Debug\net10.0\backend.sourcelink.json
