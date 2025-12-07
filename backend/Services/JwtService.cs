@@ -1,6 +1,8 @@
 using backend.Models;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace backend.Services
 {
@@ -41,58 +43,6 @@ namespace backend.Services
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-    }
-
-    internal class SymmetricSecurityKey
-    {
-        private byte[] bytes;
-
-        public SymmetricSecurityKey(byte[] bytes)
-        {
-            this.bytes = bytes;
-        }
-    }
-
-    internal class JwtSecurityTokenHandler
-    {
-        public JwtSecurityTokenHandler()
-        {
-        }
-
-        internal string WriteToken(JwtSecurityToken token)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    internal class JwtSecurityToken
-    {
-        private string? issuer;
-        private string? audience;
-        private Claim[] claims;
-        private DateTime expires;
-        private SigningCredentials signingCredentials;
-
-        public JwtSecurityToken(string? issuer, string? audience, Claim[] claims, DateTime expires, SigningCredentials signingCredentials)
-        {
-            this.issuer = issuer;
-            this.audience = audience;
-            this.claims = claims;
-            this.expires = expires;
-            this.signingCredentials = signingCredentials;
-        }
-    }
-
-    internal class SigningCredentials
-    {
-        private SymmetricSecurityKey secretKey;
-        private object hmacSha256;
-
-        public SigningCredentials(SymmetricSecurityKey secretKey, object hmacSha256)
-        {
-            this.secretKey = secretKey;
-            this.hmacSha256 = hmacSha256;
         }
     }
 }

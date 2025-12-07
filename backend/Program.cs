@@ -1,24 +1,38 @@
+using backend.Data;
+using backend.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services for MVC Controllers
-builder.Services.AddControllers();
-
-// Enable CORS for frontend
+// Add CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", p =>
-        p.AllowAnyOrigin()
-         .AllowAnyMethod()
-         .AllowAnyHeader());
+    options.AddDefaultPolicy(policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
 });
+
+// Database
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=app.db"));
+
+// Services
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+// Use CORS before auth
+app.UseCors();
 
-// Map MVC controllers
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
-
-app.MapGet("/", () => "SmartFinanceManager API (MVC) działa ✔️");
 
 app.Run();

@@ -8,7 +8,6 @@ namespace backend.Models
         public int Id { get; set; }
 
         [Required]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -21,7 +20,5 @@ namespace backend.Models
         public string LastName { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-        public DateTime? UpdatedAt { get; set; }
     }
 }
