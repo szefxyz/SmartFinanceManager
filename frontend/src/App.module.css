@@ -1,0 +1,23 @@
+.appContainer {
+  position: relative;
+  min-height: 100vh;
+}
+
+.logoutBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  z-index: 100;
+  transition: background 0.3s;
+}
+
+.logoutBtn:hover {
+  background: #c0392b;
+}

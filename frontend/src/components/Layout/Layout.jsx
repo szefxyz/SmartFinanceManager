@@ -20,3 +20,5 @@ export function Layout() {
     </div>
   );
 }
+
+export default Layout;

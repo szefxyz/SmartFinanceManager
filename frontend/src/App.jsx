@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth";
+import Layout from "./components/Layout/Layout";
+import styles from "./App.module.css";
 
-function App() {
-  const [message, setMessage] = useState("Łączenie z backendem...");
+export default function App() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("http://localhost:5092/") // <-- testowy GET
-      .then((res) => res.text())
-      .then((text) => setMessage(text))
-      .catch((err) => setMessage("Błąd: " + err.message));
-  }, []);
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Test połączenia Frontend → Backend</h1>
-      <p>{message}</p>
+    <div className={styles.appContainer}>
+      <button className={styles.logoutBtn} onClick={handleLogout}>
+        Wyloguj się
+      </button>
+      <Layout />
     </div>
   );
 }
-
-export default App;
