@@ -1,13 +1,26 @@
 import "./styles/index.css";
-
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Layout } from "./components/Layout/Layout.jsx";
-import { Home } from "./pages/Home/index.jsx";
-import { Payments } from "./pages/Payments/index.jsx";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.jsx";
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
+import App from "./App.jsx";
+import LoginPage from "./pages/Login/index.jsx";
+import RegisterPage from "./pages/Register/index.jsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
   {
     path: "/",
     element: <Layout />,
@@ -28,6 +41,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
