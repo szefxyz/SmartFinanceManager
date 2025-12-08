@@ -8,9 +8,11 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
-import App from "./App.jsx";
 import LoginPage from "./pages/Login/index.jsx";
 import RegisterPage from "./pages/Register/index.jsx";
+import Layout from "./components/Layout/Layout.jsx";
+import { Payments } from "./pages/Payments/index.jsx";
+import { Home } from "./pages/Home/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,17 +25,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
         element: <Home />,
-        handle: { title: "Dashboard", showTimeFilters: false },
       },
       {
         path: "payments",
         element: <Payments />,
-        handle: { title: "Payments", showTimeFilters: true },
       },
     ],
   },

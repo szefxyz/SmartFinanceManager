@@ -30,7 +30,7 @@ export default function LoginPage() {
         return;
       }
 
-      login(data.token);
+      login(data.token, data.user);
       navigate("/");
     } catch (err) {
       setError("Błąd połączenia z serwerem");
@@ -44,7 +44,7 @@ export default function LoginPage() {
       <div className={styles.card}>
         <h1>Logowanie</h1>
         {error && <div className={styles.error}>{error}</div>}
-        
+
         <form onSubmit={handleSubmit}>
           <input
             type="email"

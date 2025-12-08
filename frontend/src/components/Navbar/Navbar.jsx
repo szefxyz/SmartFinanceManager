@@ -1,6 +1,16 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <nav className={styles.sidebarContainer}>
       <div className={styles.sidebarHeader}>
@@ -42,11 +52,13 @@ export default function Navbar() {
 
       <ul className={styles.bottomNav}>
         <li className={styles.navItem}>
-          <a href="/">
+          <a onClick={handleLogout}>
             <i
               className={`bx bx-arrow-out-right-square-half ${styles.navIcon}`}
             ></i>
-            <span className={styles.tooltip}>Log Out</span>
+            <span onClick={handleLogout} className={styles.tooltip}>
+              Log Out
+            </span>
           </a>
         </li>
       </ul>
