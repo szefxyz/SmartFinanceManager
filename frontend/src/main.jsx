@@ -1,7 +1,11 @@
 import "./styles/index.css";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  Navigate,
+} from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import App from "./App.jsx";
@@ -19,15 +23,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: (
-      <ProtectedRoute>
-        <App />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "*",
-    element: <Navigate to="/login" replace />,
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+        handle: { title: "Dashboard", showTimeFilters: false },
+      },
+      {
+        path: "payments",
+        element: <Payments />,
+        handle: { title: "Payments", showTimeFilters: true },
+      },
+    ],
   },
 ]);
 

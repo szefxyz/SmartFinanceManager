@@ -1,0 +1,128 @@
+.latestTransactions {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 48px 32px;
+  height: auto;
+  background: var(--color-white);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-lg);
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #383838;
+}
+
+.latestTransactions .text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transactionList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+}
+
+.transactionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.transactionDetails {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.latestTransactions i {
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.transactionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transactionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.transactionAccount {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.transactionAmount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.transactionAmount p {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.transactionAmount span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 680px) {
+  .sectionTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .latestTransactions {
+    gap: 48px;
+  }
+
+  .latestTransactions .text {
+    text-align: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .latestTransactions .text a,
+  .latestTransactions .text button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .transactionTitle {
+    font-size: 14px;
+  }
+
+  .transactionAccount {
+    font-size: 12px;
+  }
+
+  .transactionAmount p {
+    font-size: 14px;
+  }
+
+  .transactionAmount span {
+    font-size: 12px;
+  }
+
+  .latestTransactions i {
+    font-size: 20px;
+  }
+}
