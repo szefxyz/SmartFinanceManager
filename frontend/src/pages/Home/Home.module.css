@@ -13,3 +13,19 @@
 .container p {
   color: #7f8c8d;
 }
+
+.dashboardGrid {
+  display: contents; /* najważniejsze! używa layoutu MainContainer */
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

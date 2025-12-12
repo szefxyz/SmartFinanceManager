@@ -31,7 +31,7 @@ namespace backend.Services
                 return new AuthResponseDto
                 {
                     Success = false,
-                    Message = "Email już istnieje w systemie"
+                    Message = "Email already exists in the system"
                 };
             }
 
@@ -51,7 +51,7 @@ namespace backend.Services
             return new AuthResponseDto
             {
                 Success = true,
-                Message = "Rejestracja pomyślna",
+                Message = "Registration successful",
                 Token = token,
                 User = new UserDto
                 {
@@ -72,7 +72,7 @@ namespace backend.Services
                 return new AuthResponseDto
                 {
                     Success = false,
-                    Message = "Email lub hasło nieprawidłowe"
+                    Message = "Invalid email or password"
                 };
             }
 
@@ -81,7 +81,7 @@ namespace backend.Services
             return new AuthResponseDto
             {
                 Success = true,
-                Message = "Logowanie pomyślne",
+                Message = "Login successful",
                 Token = token,
                 User = new UserDto
                 {

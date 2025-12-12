@@ -7,6 +7,13 @@
   background: var(--color-white);
   border-radius: var(--border-radius-base);
   box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .sectionTitle {
@@ -14,6 +21,13 @@
   font-size: 20px;
   font-weight: 700;
   color: #383838;
+}
+
+.totalSpent {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
 .categories ul {
@@ -66,8 +80,26 @@
   color: #9932c9;
 }
 
+.income {
+  color: #ffb800;
+}
+
+.chartWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
 .amount {
   font-weight: 600;
   font-size: 15px;
   color: var(--text-primary);
+}
+
+.amount.positive {
+  color: #0fa870;
+}
+
+.amount.negative {
+  color: #c33;
 }

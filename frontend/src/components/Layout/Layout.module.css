@@ -1,7 +1,11 @@
 .contentWrapper {
+  margin-left: var(--sidebar-width);
+  padding: 32px;
+}
+
+.innerContainer {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 32px;
 }
 
 @media (max-width: 680px) {

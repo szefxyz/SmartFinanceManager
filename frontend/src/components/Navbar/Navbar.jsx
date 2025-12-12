@@ -25,9 +25,9 @@ export default function Navbar() {
           </a>
         </li>
         <li className={styles.navItem}>
-          <a href="/payments">
+          <a href="/transactions">
             <i className={`bx bx-wallet-note ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Payments</span>
+            <span className={styles.tooltip}>Transaction</span>
           </a>
         </li>
         <li className={styles.navItem}>

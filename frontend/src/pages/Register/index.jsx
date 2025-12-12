@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./RegisterPage.module.css";
+import Button from "../../components/Button/Button";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -20,25 +21,25 @@ export default function RegisterPage() {
       const response = await fetch("http://localhost:5092/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          email, 
+        body: JSON.stringify({
+          email,
           password,
           firstName,
-          lastName
+          lastName,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || "Błąd rejestracji");
+        setError(data.message || "Registration failed. Please try again.");
         return;
       }
 
-      alert("Rejestracja pomyślna! Zaloguj się.");
+      alert("Registration successful! Please log in.");
       navigate("/login");
     } catch (err) {
-      setError("Błąd połączenia z serwerem");
+      setError("Server connection failed. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -46,21 +47,26 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.infoPanel}>
+        <h1>
+          <span>Create</span> Your Account in Smart Finance Manager
+        </h1>
+      </div>
       <div className={styles.card}>
-        <h1>Rejestracja</h1>
+        <h1>Create Account</h1>
         {error && <div className={styles.error}>{error}</div>}
-        
+
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Imię"
+            placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
           <input
             type="text"
-            placeholder="Nazwisko"
+            placeholder="Last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
@@ -74,19 +80,19 @@ export default function RegisterPage() {
           />
           <input
             type="password"
-            placeholder="Hasło (min. 6 znaków)"
+            placeholder="Password (min. 6 characters)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength="6"
           />
-          <button type="submit" disabled={loading}>
-            {loading ? "Rejestrowanie..." : "Zarejestruj się"}
-          </button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </Button>
         </form>
 
         <p>
-          Masz już konto? <Link to="/login">Zaloguj się</Link>
+          Already have an account? <Link to="/login">Log in</Link>
         </p>
       </div>
     </div>

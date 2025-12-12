@@ -1,0 +1,31 @@
+.main {
+  padding: 32px;
+  margin-left: 80px;
+  width: calc(100% - 80px);
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1400px;
+}
+
+@media (max-width: 1100px) {
+  .main {
+    margin: 0 auto;
+    width: calc(100% - 64px);
+    padding: 16px;
+  }
+
+  .inner {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    width: 100%;
+    margin-left: 0;
+  }
+}

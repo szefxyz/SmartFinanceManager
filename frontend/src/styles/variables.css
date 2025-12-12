@@ -1,10 +1,16 @@
 :root {
+  --layout-width: 1400px;
+  --sidebar-width: 80px;
+  --layout-gutter: 32px;
+
   /* color variables */
   --color-primary: #ff8a3d;
   --color-secondary: #ff5f2e;
   --color-white: #ffffff;
   --text-primary: #222222;
   --text-secondary: #575757;
+
+  --border-color: #e5e7eb;
 
   /* bg color variables */
   --bg-primary: #f9f9fb;

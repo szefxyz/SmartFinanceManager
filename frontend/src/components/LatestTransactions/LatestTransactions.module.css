@@ -7,6 +7,7 @@
   background: var(--color-white);
   border-radius: var(--border-radius-base);
   box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
 }
 
 .sectionTitle {
@@ -25,7 +26,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 28px;
+  gap: 20px;
 }
 
 .transactionItem {
@@ -33,6 +34,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 48px;
+  padding: 8px 0;
+  transition: 0.2s;
 }
 
 .transactionDetails {
@@ -53,13 +56,13 @@
 }
 
 .transactionTitle {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .transactionAccount {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--text-secondary);
 }
 
@@ -67,7 +70,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 6px;
+  gap: 8px;
+  min-width: 100px;
 }
 
 .transactionAmount p {
@@ -76,10 +80,39 @@
   color: var(--text-primary);
 }
 
+.amount.positive {
+  color: #0fa870;
+}
+
+.amount.negative {
+  color: #c33;
+}
+
 .transactionAmount span {
   font-size: 14px;
   font-weight: 400;
   color: var(--text-secondary);
+}
+
+.noTransactions {
+  padding: 12px 0;
+  text-align: center;
+  color: #777;
+}
+
+.transactionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.error {
+  background: #fee;
+  color: #c33;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #c33;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 680px) {

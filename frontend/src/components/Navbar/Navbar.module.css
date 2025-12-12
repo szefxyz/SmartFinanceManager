@@ -1,15 +1,16 @@
 .sidebarContainer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 80px;
+  width: var(--sidebar-width);
   background-color: var(--bg-secondary);
   padding: 0.4rem 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.5s ease;
+  z-index: 1000;
 }
 
 .sidebarHeader {
@@ -100,7 +101,7 @@
   opacity: 1;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .sidebarContainer {
     position: fixed;
     top: auto;
@@ -159,5 +160,14 @@
     border-width: 6px;
     border-style: solid;
     border-color: var(--bg-secondary) transparent transparent transparent;
+  }
+}
+
+@media (max-width: 1100px) {
+  .navList,
+  .bottomNav {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
   }
 }

@@ -13,10 +13,12 @@ export function Layout() {
       <Navbar open={open} setOpen={setOpen} />
 
       <div className={styles.contentWrapper}>
-        <TopBar />
-        <MainContainer>
-          <Outlet />
-        </MainContainer>
+        <div className={styles.innerContainer}>
+          <MainContainer>
+            <TopBar />
+            <Outlet />
+          </MainContainer>
+        </div>
       </div>
     </>
   );

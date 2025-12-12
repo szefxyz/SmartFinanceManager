@@ -1,18 +1,16 @@
 import "./styles/index.css";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  Navigate,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
-import LoginPage from "./pages/Login/index.jsx";
-import RegisterPage from "./pages/Register/index.jsx";
-import Layout from "./components/Layout/Layout.jsx";
-import { Payments } from "./pages/Payments/index.jsx";
-import { Home } from "./pages/Home/index.jsx";
+import { Home } from "./pages/Home";
+import { Transaction } from "./pages/Transaction";
+import { AddTransactionPage } from "./pages/AddTransactionPage";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Register";
+import { DashboardLayout } from "./layouts/DashboardLayout/DashboardLayout";
+import { DefaultLayout } from "./layouts/DefaultLayout/DefaultLayout";
 
 const router = createBrowserRouter([
   {
@@ -24,20 +22,35 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
-    path: "/",
     element: (
       <ProtectedRoute>
-        <Layout />
+        <DashboardLayout />
       </ProtectedRoute>
     ),
     children: [
       {
         index: true,
         element: <Home />,
+        handle: { title: "Dashboard", showTimeFilters: false },
+      },
+    ],
+  },
+  {
+    element: (
+      <ProtectedRoute>
+        <DefaultLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "transactions",
+        element: <Transaction />,
+        handle: { title: "Transaction", showTimeFilters: true },
       },
       {
-        path: "payments",
-        element: <Payments />,
+        path: "add-transaction",
+        element: <AddTransactionPage />,
+        handle: { title: "Add New Transaction", showTimeFilters: false },
       },
     ],
   },

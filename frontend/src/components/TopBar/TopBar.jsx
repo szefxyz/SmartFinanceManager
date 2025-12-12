@@ -17,6 +17,7 @@ export function TopBar() {
 
       <div className={styles.rightSection}>
         <Button
+          href="/add-transaction"
           icon={<i className="bx bx-plus"></i>}
           iconPosition="right"
           variant="secondary"

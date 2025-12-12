@@ -9,6 +9,13 @@ export function CircularProgress({ percentage, spent, limit }) {
   return (
     <div className={styles.chartContainer}>
       <svg width="180" height="180" className={styles.svg}>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ff8a3d" />
+            <stop offset="100%" stopColor="#ff5f2e" />
+          </linearGradient>
+        </defs>
+
         <circle
           className={styles.bg}
           cx="90"
@@ -16,6 +23,7 @@ export function CircularProgress({ percentage, spent, limit }) {
           r={radius}
           strokeWidth="12"
         />
+
         <circle
           className={styles.progress}
           cx="90"

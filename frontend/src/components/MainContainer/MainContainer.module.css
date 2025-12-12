@@ -1,11 +1,8 @@
 .mainContainer {
-  padding: 32px;
-  margin-left: 80px;
-  width: calc(100% - 80px);
+  padding: 0; /* padding jest w contentWrapper */
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(580px, 2fr) minmax(340px, 1fr);
   gap: 32px;
-  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 @media (max-width: 1024px) {
