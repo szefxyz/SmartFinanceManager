@@ -7,8 +7,8 @@ export function Home() {
   return (
     <div className={styles.dashboardGrid}>
       <div className={styles.left}>
-        <LatestTransactions />
         <SummaryBoxes />
+        <LatestTransactions />
       </div>
 
       <div className={styles.right}>

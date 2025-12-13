@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./Navbar.module.css";
 
@@ -14,51 +14,67 @@ export default function Navbar() {
   return (
     <nav className={styles.sidebarContainer}>
       <div className={styles.sidebarHeader}>
-        <i className={`bx bxs-wallet`}></i>
+        <i className="bx bxs-wallet"></i>
       </div>
 
       <ul className={styles.navList}>
         <li className={styles.navItem}>
-          <a href="/">
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.active : ""}`
+            }
+          >
             <i className={`bx bxs-dashboard ${styles.navIcon}`}></i>
             <span className={styles.tooltip}>Dashboard</span>
-          </a>
+          </NavLink>
         </li>
+
         <li className={styles.navItem}>
-          <a href="/transactions">
+          <NavLink
+            to="/transactions"
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.active : ""}`
+            }
+          >
             <i className={`bx bx-wallet-note ${styles.navIcon}`}></i>
             <span className={styles.tooltip}>Transaction</span>
-          </a>
+          </NavLink>
         </li>
+
         <li className={styles.navItem}>
-          <a href="/">
-            <i className={`bx bx bx-layers ${styles.navIcon}`}></i>
+          <NavLink
+            to="/categories"
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.active : ""}`
+            }
+          >
+            <i className={`bx bx-layers ${styles.navIcon}`}></i>
             <span className={styles.tooltip}>Expense Categories</span>
-          </a>
+          </NavLink>
         </li>
+
         <li className={styles.navItem}>
-          <a href="/">
-            <i className={`bx bxs-edit ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Add Expense</span>
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="/">
+          <NavLink
+            to="/analytics"
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.active : ""}`
+            }
+          >
             <i className={`bx bxs-chart-line ${styles.navIcon}`}></i>
             <span className={styles.tooltip}>Analytics</span>
-          </a>
+          </NavLink>
         </li>
       </ul>
 
       <ul className={styles.bottomNav}>
         <li className={styles.navItem}>
-          <a onClick={handleLogout}>
+          <a onClick={handleLogout} className={styles.navLink}>
             <i
               className={`bx bx-arrow-out-right-square-half ${styles.navIcon}`}
             ></i>
-            <span onClick={handleLogout} className={styles.tooltip}>
-              Log Out
-            </span>
+            <span className={styles.tooltip}>Log Out</span>
           </a>
         </li>
       </ul>

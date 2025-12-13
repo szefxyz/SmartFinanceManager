@@ -1,99 +1,81 @@
 import { useEffect, useState } from "react";
 import styles from "./ExpenseCategories.module.css";
-import { categories } from "../../config/categories";
+import cardStyles from "../Card/Card.module.css";
+import { Card } from "../Card/Card";
 import { CircularProgress } from "../CircularProgress/CircularProgress";
+import { categories } from "../../config/categories";
 
 export function ExpenseCategories() {
-  const [categoryTotals, setCategoryTotals] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const load = async () => {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user) return;
 
       const res = await fetch(
         `http://localhost:5092/api/transaction/${user.id}`
       );
-      const data = await res.json();
+      const tx = await res.json();
 
       const totals = {};
+      Object.keys(categories).forEach((c) => (totals[c] = 0));
 
-      Object.keys(categories).forEach((cat) => {
-        totals[cat] = { income: 0, expense: 0 };
+      tx.forEach((t) => {
+        totals[t.category] += t.amount;
       });
 
-      data.forEach((t) => {
-        if (!categories[t.category]) return;
-
-        if (t.amount < 0) {
-          totals[t.category].expense += Math.abs(t.amount);
-        } else {
-          totals[t.category].income += t.amount;
-        }
-      });
-
-      const formatted = Object.entries(totals).map(([category, values]) => ({
-        category,
-        balance: values.income - values.expense,
-      }));
-
-      setCategoryTotals(formatted);
+      setData(
+        Object.entries(totals).map(([category, balance]) => ({
+          category,
+          balance,
+        }))
+      );
     };
 
-    fetchData();
+    load();
   }, []);
 
-  const formatMoney = (value) => {
-    const abs = Math.abs(value).toFixed(2);
-    return value < 0 ? `-$${abs}` : `$${abs}`;
-  };
+  const income = data.find((c) => c.category === "Income")?.balance || 0;
 
-  const income =
-    categoryTotals.find((c) => c.category === "Income")?.balance || 0;
-
-  const spent = categoryTotals
-    .filter((c) => c.category !== "Income")
-    .reduce((sum, c) => sum + Math.abs(Math.min(0, c.balance)), 0);
-
-  const percentage =
-    income === 0 ? 0 : Math.min(100, Math.round((spent / income) * 100));
+  const spent = data
+    .filter((c) => c.balance < 0)
+    .reduce((sum, c) => sum + Math.abs(c.balance), 0);
 
   return (
-    <section className={styles.expenseCategories}>
-      <div className={styles.text}>
-        <h2 className={styles.sectionTitle}>Categories Overview</h2>
+    <Card className={`${cardStyles.card} ${styles.container}`}>
+      <div className={styles.chartWrapper}>
+        <CircularProgress
+          percentage={income ? (spent / income) * 100 : 0}
+          spent={spent.toFixed(2)}
+          limit={income.toFixed(2)}
+        />
       </div>
-      <CircularProgress
-        percentage={percentage}
-        spent={spent.toFixed(2)}
-        limit={income.toFixed(2)}
-      />
-      <div className={styles.wrapper}>
-        <div className={styles.categories}>
-          <ul>
-            {categoryTotals.map((c) => (
-              <li key={c.category}>
-                <div className={styles.left}>
-                  <i
-                    className={`${categories[c.category].icon} ${
-                      styles[categories[c.category].colorClass]
-                    }`}
-                  />
-                  {c.category}
-                </div>
 
-                <span
-                  className={`${styles.amount} ${
-                    c.balance < 0 ? styles.negative : styles.positive
+      <div className={styles.categories}>
+        <ul>
+          {data.map((c) => (
+            <li key={c.category}>
+              <div className={styles.left}>
+                <i
+                  className={`${categories[c.category].icon} ${
+                    styles[categories[c.category].colorClass]
                   }`}
-                >
-                  {formatMoney(c.balance)}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+                />
+                {c.category}
+              </div>
+
+              <span
+                className={`${styles.amount} ${
+                  c.balance < 0 ? styles.negative : styles.positive
+                }`}
+              >
+                ${Math.abs(c.balance).toFixed(2)}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
-    </section>
+    </Card>
   );
 }

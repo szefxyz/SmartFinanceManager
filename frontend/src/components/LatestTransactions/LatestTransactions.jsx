@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./LatestTransactions.module.css";
+import cardStyles from "../Card/Card.module.css";
+import { Card } from "../Card/Card";
 import { Button } from "../Button/Button";
 import { categories } from "../../config/categories";
 
@@ -56,7 +58,7 @@ export function LatestTransactions() {
   }, []);
 
   return (
-    <section className={styles.latestTransactions}>
+    <Card className={`${cardStyles.card} ${styles.container}`}>
       <div className={styles.text}>
         <h2 className={styles.sectionTitle}>Latest transactions</h2>
         <Button href="/transactions">View All</Button>
@@ -89,13 +91,13 @@ export function LatestTransactions() {
                   t.amount < 0 ? styles.negative : styles.positive
                 }`}
               >
-                {t.amount < 0 ? "- " : ""}${Math.abs(t.amount)}
+                {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount)}
               </p>
               <span>{new Date(t.date).toLocaleDateString()}</span>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </Card>
   );
 }

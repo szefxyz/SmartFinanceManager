@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 24px;
 }
 
 .svg {
@@ -12,14 +13,19 @@
 .bg {
   fill: none;
   stroke: #e6e6e6;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .progress {
   fill: none;
   stroke: url(#grad);
   stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease;
+  transition: stroke-dashoffset 1s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.empty .progress {
+  opacity: 0.3;
 }
 
 .centerText {
@@ -29,20 +35,20 @@
 }
 
 .centerText h2 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   margin: 0;
 }
 
 .centerText p {
-  font-size: 14px;
+  font-size: 13px;
   margin: 6px 0 0 0;
   color: #555;
 }
 
 .centerText span {
-  margin-top: 2px;
   display: block;
+  margin-top: 2px;
   font-size: 12px;
   color: #aaa;
 }

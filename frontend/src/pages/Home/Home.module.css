@@ -15,7 +15,7 @@
 }
 
 .dashboardGrid {
-  display: contents; /* najważniejsze! używa layoutu MainContainer */
+  display: contents;
 }
 
 .left {
@@ -25,6 +25,7 @@
 }
 
 .right {
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;

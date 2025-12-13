@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "./SummaryBoxes.module.css";
+import { Card } from "../Card/Card";
 
 export function SummaryBoxes() {
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [totalExpense, setTotalExpense] = useState(0);
+  const [income, setIncome] = useState(0);
+  const [expense, setExpense] = useState(0);
+  const [avgDailySpend, setAvgDailySpend] = useState(0);
 
   useEffect(() => {
     const load = async () => {
@@ -15,16 +17,29 @@ export function SummaryBoxes() {
       );
       const data = await res.json();
 
-      const income = data
+      const totalIncome = data
         .filter((t) => t.amount > 0)
         .reduce((sum, t) => sum + t.amount, 0);
 
-      const expense = data
-        .filter((t) => t.amount < 0)
-        .reduce((sum, t) => sum + Math.abs(t.amount), 0);
+      const expenses = data.filter((t) => t.amount < 0);
 
-      setTotalIncome(income);
-      setTotalExpense(expense);
+      const totalExpense = expenses.reduce(
+        (sum, t) => sum + Math.abs(t.amount),
+        0
+      );
+
+      const uniqueDays = new Set(
+        expenses.map((t) => {
+          const d = new Date(t.date);
+          return d.toISOString().split("T")[0];
+        })
+      ).size;
+
+      const avgDaily = uniqueDays > 0 ? totalExpense / uniqueDays : 0;
+
+      setIncome(totalIncome);
+      setExpense(totalExpense);
+      setAvgDailySpend(avgDaily);
     };
 
     load();
@@ -32,15 +47,20 @@ export function SummaryBoxes() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.box}>
+      <Card className={styles.box}>
         <span className={styles.title}>Total Income</span>
-        <h2 className={styles.value}>${totalIncome.toFixed(2)}</h2>
-      </div>
+        <h2 className={styles.value}>${income.toFixed(2)}</h2>
+      </Card>
 
-      <div className={styles.box}>
+      <Card className={styles.box}>
         <span className={styles.title}>Total Expense</span>
-        <h2 className={styles.valueNegative}>${totalExpense.toFixed(2)}</h2>
-      </div>
+        <h2 className={styles.valueNegative}>${expense.toFixed(2)}</h2>
+      </Card>
+
+      <Card className={styles.box}>
+        <span className={styles.title}>Avg Daily Spend</span>
+        <h2 className={styles.valueNegative}>${avgDailySpend.toFixed(2)}</h2>
+      </Card>
     </div>
   );
 }

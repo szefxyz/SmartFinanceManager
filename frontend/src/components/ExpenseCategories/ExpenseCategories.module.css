@@ -1,13 +1,9 @@
-.expenseCategories {
+.container {
   display: flex;
   flex-direction: column;
   gap: 32px;
   padding: 64px 20px;
   height: auto;
-  background: var(--color-white);
-  border-radius: var(--border-radius-base);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-color);
 }
 
 .text {

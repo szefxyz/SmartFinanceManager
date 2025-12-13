@@ -22,4 +22,5 @@
 
   /* box shadow */
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
