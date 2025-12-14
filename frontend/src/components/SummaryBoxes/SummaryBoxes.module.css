@@ -12,20 +12,49 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: var(--text-secondary);
 }
 
 .value {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #0fa870;
 }
 
-.valueNegative {
-  font-size: 28px;
-  font-weight: 700;
+.valueRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.valueNeutral {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.trend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.trendDown {
   color: #c33;
+  background: rgba(195, 51, 51, 0.12);
+  border: 1px solid rgba(195, 51, 51, 0.2);
+}
+
+.trendUp {
+  color: #0fa870;
+  background: rgba(15, 168, 112, 0.12);
+  border: 1px solid rgba(15, 168, 112, 0.2);
 }
 
 @media (max-width: 1024px) {
@@ -54,10 +83,10 @@
 
   .value,
   .valueNegative {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .title {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }

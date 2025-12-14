@@ -60,8 +60,10 @@ export function LatestTransactions() {
   return (
     <Card className={`${cardStyles.card} ${styles.container}`}>
       <div className={styles.text}>
-        <h2 className={styles.sectionTitle}>Latest transactions</h2>
-        <Button href="/transactions">View All</Button>
+        <h2 className={styles.sectionTitle}>Transactions</h2>
+        <a className={styles.btnViewAll} href="/transactions">
+          View All
+        </a>
       </div>
 
       <div className={styles.transactionList}>
@@ -91,7 +93,7 @@ export function LatestTransactions() {
                   t.amount < 0 ? styles.negative : styles.positive
                 }`}
               >
-                {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount)}
+                {t.amount < 0 ? "-" : ""}${Math.abs(t.amount).toFixed(2)}
               </p>
               <span>{new Date(t.date).toLocaleDateString()}</span>
             </div>

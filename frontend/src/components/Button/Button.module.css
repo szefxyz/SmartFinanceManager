@@ -33,6 +33,7 @@
   background: var(--bg-secondary);
   color: var(--color-white);
 }
+
 .icon {
   display: flex;
   align-items: center;

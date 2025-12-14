@@ -7,6 +7,9 @@ export function SummaryBoxes() {
   const [expense, setExpense] = useState(0);
   const [avgDailySpend, setAvgDailySpend] = useState(0);
 
+  const formatMoney = (value) =>
+    `${value < 0 ? "-" : ""}$${Math.abs(value).toFixed(2)}`;
+
   useEffect(() => {
     const load = async () => {
       const user = JSON.parse(localStorage.getItem("user"));
@@ -23,10 +26,7 @@ export function SummaryBoxes() {
 
       const expenses = data.filter((t) => t.amount < 0);
 
-      const totalExpense = expenses.reduce(
-        (sum, t) => sum + Math.abs(t.amount),
-        0
-      );
+      const totalExpense = expenses.reduce((sum, t) => sum + t.amount, 0);
 
       const uniqueDays = new Set(
         expenses.map((t) => {
@@ -54,12 +54,42 @@ export function SummaryBoxes() {
 
       <Card className={styles.box}>
         <span className={styles.title}>Total Expense</span>
-        <h2 className={styles.valueNegative}>${expense.toFixed(2)}</h2>
+
+        <div className={styles.valueRow}>
+          <h2 className={styles.valueNeutral}>{formatMoney(expense)}</h2>
+
+          <span
+            className={`${styles.trend} ${
+              expense < 0 ? styles.trendDown : styles.trendUp
+            }`}
+          >
+            {expense < 0 ? (
+              <i className="bxr  bx-arrow-down-right"></i>
+            ) : (
+              <i className="bxr  bx-arrow-up-right"></i>
+            )}
+          </span>
+        </div>
       </Card>
 
       <Card className={styles.box}>
         <span className={styles.title}>Avg Daily Spend</span>
-        <h2 className={styles.valueNegative}>${avgDailySpend.toFixed(2)}</h2>
+
+        <div className={styles.valueRow}>
+          <h2 className={styles.valueNeutral}>{formatMoney(avgDailySpend)}</h2>
+
+          <span
+            className={`${styles.trend} ${
+              avgDailySpend < 0 ? styles.trendDown : styles.trendUp
+            }`}
+          >
+            {avgDailySpend < 0 ? (
+              <i className="bxr  bx-arrow-down-right"></i>
+            ) : (
+              <i className="bxr  bx-arrow-up-right"></i>
+            )}
+          </span>
+        </div>
       </Card>
     </div>
   );
