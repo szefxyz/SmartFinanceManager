@@ -2,8 +2,7 @@ import { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./TimeSwitcher.module.css";
 
-export default function TimeSwitcher() {
-  const [selectedTimeframe, setSelectedTimeframe] = useState("Week");
+export default function TimeSwitcher({ value, onChange }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const timeframes = ["Day", "Week", "Month", "Year"];
@@ -14,8 +13,8 @@ export default function TimeSwitcher() {
         {timeframes.map((o) => (
           <Button
             key={o}
-            className={selectedTimeframe === o ? styles.active : ""}
-            onClick={() => setSelectedTimeframe(o)}
+            className={value === o ? styles.active : ""}
+            onClick={() => onChange(o)}
           >
             {o}
           </Button>
@@ -27,7 +26,7 @@ export default function TimeSwitcher() {
           className={styles.mobileButton}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          {selectedTimeframe}
+          {value}
           <i
             className={`bx bx-chevron-down ${
               isDropdownOpen ? styles.rotate : ""
@@ -42,7 +41,7 @@ export default function TimeSwitcher() {
                 key={o}
                 className={styles.dropdownItem}
                 onClick={() => {
-                  setSelectedTimeframe(o);
+                  onChange(o);
                   setIsDropdownOpen(false);
                 }}
               >

@@ -22,11 +22,11 @@
   font-weight: 600;
   opacity: 0.9;
   color: var(--text-primary);
-  text-decoration: underline;
 }
 
 .btnViewAll:hover {
   opacity: 1;
+  text-decoration: underline;
 }
 
 .transactionList {

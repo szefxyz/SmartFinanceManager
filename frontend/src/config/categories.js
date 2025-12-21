@@ -1,32 +1,33 @@
 export const categories = {
   Food: {
     icon: "bx bx-bowl-hot",
-    colorClass: "food",
-    hex: "#69a33c",
+    hex: "#22C55E",
   },
   Shopping: {
     icon: "bx bx-shopping-bag",
-    colorClass: "shopping",
-    hex: "#3c97a3",
+    hex: "#3B82F6",
   },
   Education: {
     icon: "bx bx-book",
-    colorClass: "education",
-    hex: "#673ab7",
+    hex: "#8B5CF6",
   },
   Transport: {
     icon: "bx bx-car",
-    colorClass: "transport",
-    hex: "#aad435",
+    hex: "#EF4444",
   },
   Entertainment: {
     icon: "bx bx-film",
-    colorClass: "entertainment",
-    hex: "#a33c73",
+    hex: "#EC4899",
   },
   Income: {
     icon: "bx bx-dollar-circle",
-    colorClass: "income",
-    hex: "#2196f3",
+    hex: "#F59E0B",
   },
 };
+
+/* 🔥 NOWE – do gridów / formularzy */
+export const categoryList = Object.entries(categories).map(([key, value]) => ({
+  key,
+  icon: value.icon,
+  hex: value.hex,
+}));

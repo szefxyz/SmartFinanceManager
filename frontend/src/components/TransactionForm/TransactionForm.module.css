@@ -1,18 +1,25 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  padding: 48px 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
 }
 
 .title {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -23,10 +30,24 @@
 }
 
 .form {
-  max-width: 480px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 24px;
+}
+
+.formGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .field {
@@ -41,43 +62,196 @@
   color: var(--text-primary);
 }
 
-.field input,
-.field select {
-  padding: 0.7rem;
+.field input {
+  padding: 0.8rem 0.85rem;
   border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: #fff;
 }
 
-.field input:focus,
-.field select:focus {
+.field input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
   outline: none;
 }
 
+.amountInputWrapper {
+  position: relative;
+}
+
+.currency {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.amountInputWrapper input {
+  padding-left: 36px;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.preset {
+  padding: 14px 0;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preset:hover {
+  border-color: var(--color-primary);
+}
+
+.preset.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.categoryItem i {
+  font-size: 18px;
+}
+
+.categoryItem:hover {
+  border-color: var(--color-primary);
+}
+
+.categoryItem.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 16px;
+}
+
+.rightColumn .actions {
+  margin-top: auto;
+}
+
+.actions button {
+  min-width: 180px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
 }
 
 .error {
   background: #fee;
   color: #c33;
   padding: 0.75rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  border-radius: 8px;
   border-left: 4px solid #c33;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .success {
   background: #e6ffed;
   color: #2d7a2d;
   padding: 0.75rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  border-radius: 8px;
   border-left: 4px solid #2d7a2d;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
+  .formGrid {
+    gap: 40px;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .rightColumn .actions {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .presets {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 32px 16px;
+    gap: 32px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .preset {
+    padding: 12px 0;
+    font-size: 0.8rem;
+  }
+
+  .categoryItem {
+    padding: 12px 0;
+    font-size: 0.75rem;
+  }
+
+  .categoryItem i {
+    font-size: 18px;
+  }
 }

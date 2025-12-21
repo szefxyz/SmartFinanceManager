@@ -60,9 +60,8 @@ export function ExpenseCategories() {
             <li key={c.category}>
               <div className={styles.left}>
                 <i
-                  className={`${categories[c.category].icon} ${
-                    styles[categories[c.category].colorClass]
-                  }`}
+                  className={categories[c.category].icon}
+                  style={{ color: categories[c.category].hex }}
                 />
                 {c.category}
               </div>

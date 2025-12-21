@@ -46,7 +46,7 @@ export function LatestTransactions() {
         return dateB - dateA;
       });
 
-      setLatest(sorted.slice(0, 5));
+      setLatest(sorted.slice(0, 4));
     } catch (err) {
       console.error(err);
       setError("Server error");

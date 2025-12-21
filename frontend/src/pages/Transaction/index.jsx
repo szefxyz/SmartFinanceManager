@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMatches } from "react-router-dom";
 import TimeSwitcher from "../../components/TimeSwitcher/TimeSwitcher";
 import { categories } from "../../config/categories";
+import { getStartDate } from "../../utils/dateFilters";
 import styles from "./Transaction.module.css";
 
 export function Transaction() {
@@ -10,6 +11,7 @@ export function Transaction() {
   const showFilters = current?.handle?.showTimeFilters || false;
 
   const [transactions, setTransactions] = useState([]);
+  const [timeFrame, setTimeframe] = useState("Week");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -40,18 +42,24 @@ export function Transaction() {
     fetchData();
   }, []);
 
+  const filteredTransactions = showFilters
+    ? transactions.filter((t) => new Date(t.date) >= getStartDate(timeFrame))
+    : transactions;
+
   return (
     <>
       <section className={styles.container}>
-        {showFilters && <TimeSwitcher />}
+        {showFilters && (
+          <TimeSwitcher value={timeFrame} onChange={setTimeframe} />
+        )}
 
         {error && <p className={styles.error}>{error}</p>}
-        {!error && transactions.length === 0 && (
+        {!error && filteredTransactions.length === 0 && (
           <p className={styles.noTransactions}>You have no transactions yet.</p>
         )}
 
         <ul className={styles.transactionList}>
-          {transactions.map((t) => (
+          {filteredTransactions.map((t) => (
             <li key={t.id} className={styles.transactionItem}>
               <div className={styles.transactionDetails}>
                 <div className={styles.icon}>
