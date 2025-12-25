@@ -116,7 +116,7 @@
 }
 
 .preset.active {
-  background: var(--color-primary);
+  background: var(--bg-gradient);
   color: #fff;
   border-color: var(--color-primary);
 }
@@ -151,7 +151,7 @@
 }
 
 .categoryItem.active {
-  background: var(--color-primary);
+  background: var(--bg-gradient);
   color: #fff;
   border-color: var(--color-primary);
 }
@@ -176,22 +176,55 @@
   box-shadow: none;
 }
 
+.notifications {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  animation: notifyIn 0.25s ease-out;
+}
+
 .error {
   background: #fee;
   color: #c33;
-  padding: 0.75rem;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: var(--border-radius-base);
   border-left: 4px solid #c33;
   font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .success {
   background: #e6ffed;
   color: #2d7a2d;
-  padding: 0.75rem;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: var(--border-radius-base);
   border-left: 4px solid #2d7a2d;
   font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.error,
+.success {
+  animation: notifyIn 0.25s ease-out, notifyOut 0.3s ease-in 4.7s;
+}
+
+@keyframes notifyIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes notifyOut {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
 }
 
 /* ===== TABLET ===== */

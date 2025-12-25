@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../components/Button/Button";
 import styles from "./TransactionForm.module.css";
 import { presets } from "../../config/presets.js";
@@ -61,6 +61,17 @@ export default function TransactionForm() {
     }
   };
 
+  useEffect(() => {
+    if (!error && !success) return;
+
+    const timer = setTimeout(() => {
+      setError("");
+      setSuccess("");
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [error, success]);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -70,10 +81,23 @@ export default function TransactionForm() {
         </p>
       </div>
 
-      <form className={styles.formGrid} onSubmit={handleSubmit}>
-        {error && <div className={styles.error}>{error}</div>}
-        {success && <div className={styles.success}>{success}</div>}
+      {(error || success) && (
+        <div
+          className={styles.notifications}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {error && (
+            <div className={styles.error} role="alert">
+              {error}
+            </div>
+          )}
+          {success && <div className={styles.success}>{success}</div>}
+        </div>
+      )}
 
+      <form className={styles.formGrid} onSubmit={handleSubmit}>
         <div className={styles.leftColumn}>
           <div className={styles.field}>
             <label htmlFor="title">Title</label>
@@ -89,7 +113,7 @@ export default function TransactionForm() {
           </div>
 
           <div className={styles.field}>
-            <label>Amount</label>
+            <label htmlFor="amount">Amount</label>
 
             <div className={styles.amountInputWrapper}>
               <span className={styles.currency}>$</span>
@@ -97,6 +121,7 @@ export default function TransactionForm() {
                 type="number"
                 placeholder="0.00"
                 value={amount}
+                aria-description="Enter the transaction amount"
                 onChange={(e) => setAmount(e.target.value)}
                 min="0"
                 step="0.01"
@@ -109,6 +134,8 @@ export default function TransactionForm() {
                 <button
                   key={value}
                   type="button"
+                  aria-pressed={Number(amount) === value}
+                  aria-label={`Set amount to ${value} dollars`}
                   className={`${styles.preset} ${
                     Number(amount) === value ? styles.active : ""
                   }`}
@@ -125,7 +152,10 @@ export default function TransactionForm() {
           <div className={styles.field}>
             <label>Category</label>
 
-            <div className={styles.categoryGrid}>
+            <div
+              aria-label="Transaction category"
+              className={styles.categoryGrid}
+            >
               {categoryList.map((c) => (
                 <button
                   key={c.key}
@@ -158,6 +188,7 @@ export default function TransactionForm() {
               className={!amount ? styles.disabled : ""}
               type="submit"
               disabled={!amount}
+              aria-disabled={!amount}
             >
               Add Transaction
             </Button>

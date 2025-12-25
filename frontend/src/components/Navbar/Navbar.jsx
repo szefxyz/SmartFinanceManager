@@ -70,12 +70,12 @@ export default function Navbar() {
 
       <ul className={styles.bottomNav}>
         <li className={styles.navItem}>
-          <a onClick={handleLogout} className={styles.navLink}>
+          <NavLink onClick={handleLogout} className={styles.navLink}>
             <i
               className={`bx bx-arrow-out-right-square-half ${styles.navIcon}`}
             ></i>
             <span className={styles.tooltip}>Log Out</span>
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>

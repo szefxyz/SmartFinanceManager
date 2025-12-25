@@ -41,6 +41,7 @@ export function ExpenseCategories() {
   const categoriesDataWithColors = categoriesData
     .filter((c) => c.balance < 0)
     .sort((a, b) => Math.abs(b.balance) - Math.abs(a.balance))
+    .slice(0, 3)
     .map((c) => ({
       ...c,
       color: categories[c.category].hex,

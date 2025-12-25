@@ -3569,31 +3569,24 @@
     ]
   },
   "packageFolders": {
-    "D:\\Visual Studio NuGetPackages": {},
-    "F:\\Microsoft Visual Studio Shared\\NuGetPackages": {}
+    "/Users/jakubblaszczyk/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "f:\\Github Projects\\SmartFinanceManager\\backend\\backend.csproj",
+      "projectUniqueName": "/Users/jakubblaszczyk/Documents/Github Projects/SmartFinanceManager/backend/backend.csproj",
       "projectName": "backend",
-      "projectPath": "f:\\Github Projects\\SmartFinanceManager\\backend\\backend.csproj",
-      "packagesPath": "D:\\Visual Studio NuGetPackages",
-      "outputPath": "f:\\Github Projects\\SmartFinanceManager\\backend\\obj\\",
+      "projectPath": "/Users/jakubblaszczyk/Documents/Github Projects/SmartFinanceManager/backend/backend.csproj",
+      "packagesPath": "/Users/jakubblaszczyk/.nuget/packages/",
+      "outputPath": "/Users/jakubblaszczyk/Documents/Github Projects/SmartFinanceManager/backend/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "F:\\Microsoft Visual Studio Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\kubab\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/jakubblaszczyk/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3666,7 +3659,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

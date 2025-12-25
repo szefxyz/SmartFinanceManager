@@ -4,8 +4,9 @@
   --layout-gutter: 32px;
 
   /* color variables */
-  --color-primary: #ff8a3d;
-  --color-secondary: #ff5f2e;
+  --color-primary: #22c55e;
+  --color-secondary: #039c3b;
+  --color-accent: #3b82f6;
   --color-white: #ffffff;
   --text-primary: #1e1e1e;
   --text-secondary: #575757;
@@ -15,6 +16,8 @@
   /* bg color variables */
   --bg-primary: #f9f9fb;
   --bg-secondary: #212121;
+
+  --bg-gradient: linear-gradient(90deg, #22c55e, #039c3b);
 
   /* border radius variables */
   --border-radius-base: 5px;

@@ -7,105 +7,105 @@ using System.Text;
 
 namespace backend.Services
 {
-    public interface IAuthService
-    {
-        Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto);
-        Task<AuthResponseDto> LoginAsync(LoginDto loginDto);
-    }
+	public interface IAuthService
+	{
+		Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto);
+		Task<AuthResponseDto> LoginAsync(LoginDto loginDto);
+	}
 
-    public class AuthService : IAuthService
-    {
-        private readonly AppDbContext _context;
-        private readonly IJwtService _jwtService;
+	public class AuthService : IAuthService
+	{
+		private readonly AppDbContext _context;
+		private readonly IJwtService _jwtService;
 
-        public AuthService(AppDbContext context, IJwtService jwtService)
-        {
-            _context = context;
-            _jwtService = jwtService;
-        }
+		public AuthService(AppDbContext context, IJwtService jwtService)
+		{
+			_context = context;
+			_jwtService = jwtService;
+		}
 
-        public async Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto)
-        {
-            if (await _context.Users.AnyAsync(u => u.Email == registerDto.Email))
-            {
-                return new AuthResponseDto
-                {
-                    Success = false,
-                    Message = "Email already exists in the system"
-                };
-            }
+		public async Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto)
+		{
+			if (await _context.Users.AnyAsync(u => u.Email == registerDto.Email))
+			{
+				return new AuthResponseDto
+				{
+					Success = false,
+					Message = "Email already exists in the system"
+				};
+			}
 
-            var user = new User
-            {
-                Email = registerDto.Email,
-                FirstName = registerDto.FirstName,
-                LastName = registerDto.LastName,
-                PasswordHash = HashPassword(registerDto.Password)
-            };
+			var user = new User
+			{
+				Email = registerDto.Email,
+				FirstName = registerDto.FirstName,
+				LastName = registerDto.LastName,
+				PasswordHash = HashPassword(registerDto.Password)
+			};
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+			_context.Users.Add(user);
+			await _context.SaveChangesAsync();
 
-            var token = _jwtService.GenerateToken(user);
+			var token = _jwtService.GenerateToken(user, false);
 
-            return new AuthResponseDto
-            {
-                Success = true,
-                Message = "Registration successful",
-                Token = token,
-                User = new UserDto
-                {
-                    Id = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName
-                }
-            };
-        }
+			return new AuthResponseDto
+			{
+				Success = true,
+				Message = "Registration successful",
+				Token = token,
+				User = new UserDto
+				{
+					Id = user.Id,
+					Email = user.Email,
+					FirstName = user.FirstName,
+					LastName = user.LastName
+				}
+			};
+		}
 
-        public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
+		public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
+		{
+			var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
 
-            if (user == null || !VerifyPassword(loginDto.Password, user.PasswordHash))
-            {
-                return new AuthResponseDto
-                {
-                    Success = false,
-                    Message = "Invalid email or password"
-                };
-            }
+			if (user == null || !VerifyPassword(loginDto.Password, user.PasswordHash))
+			{
+				return new AuthResponseDto
+				{
+					Success = false,
+					Message = "Invalid email or password"
+				};
+			}
 
-            var token = _jwtService.GenerateToken(user);
+			var token = _jwtService.GenerateToken(user, loginDto.RememberMe);
 
-            return new AuthResponseDto
-            {
-                Success = true,
-                Message = "Login successful",
-                Token = token,
-                User = new UserDto
-                {
-                    Id = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName
-                }
-            };
-        }
+			return new AuthResponseDto
+			{
+				Success = true,
+				Message = "Login successful",
+				Token = token,
+				User = new UserDto
+				{
+					Id = user.Id,
+					Email = user.Email,
+					FirstName = user.FirstName,
+					LastName = user.LastName
+				}
+			};
+		}
 
-        private string HashPassword(string password)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(hashedBytes);
-            }
-        }
+		private string HashPassword(string password)
+		{
+			using (var sha256 = SHA256.Create())
+			{
+				var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+				return Convert.ToBase64String(hashedBytes);
+			}
+		}
 
-        private bool VerifyPassword(string password, string hash)
-        {
-            var hashOfInput = HashPassword(password);
-            return hashOfInput == hash;
-        }
-    }
+		private bool VerifyPassword(string password, string hash)
+		{
+			var hashOfInput = HashPassword(password);
+			return hashOfInput == hash;
+		}
+	}
 }

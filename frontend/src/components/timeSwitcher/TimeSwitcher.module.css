@@ -36,9 +36,9 @@
 }
 
 .timeSwitcher button.active {
-  background: linear-gradient(90deg, #ff8a3d, #ff5f2e);
+  background: var(--bg-gradient);
   color: #fff;
-  box-shadow: 0 5px 15px rgba(255, 111, 50, 0.548);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .timeSwitcher button.active:hover {

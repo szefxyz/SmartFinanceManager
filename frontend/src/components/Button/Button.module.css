@@ -19,7 +19,7 @@
 }
 
 .primary {
-  background: linear-gradient(90deg, #ff8a3d, #ff5f2e);
+  background: var(--bg-gradient);
   color: var(--color-white);
 }
 
