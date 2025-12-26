@@ -84,7 +84,7 @@
   border: none;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--text-on-primary);
   white-space: nowrap;
   box-shadow: var(--shadow-lg);
   opacity: 0;

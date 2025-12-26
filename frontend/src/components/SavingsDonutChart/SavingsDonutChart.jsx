@@ -1,25 +1,35 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import styles from "./CategoryDonutChart.module.css";
+import styles from "./SavingsDonutChart.module.css";
 
-export function CategoryDonutChart({
-  categoriesData,
+export function SavingsDonutChart({
+  income,
+  expenses,
   isAnimationActive = true,
 }) {
-  const data = categoriesData.map((c) => ({
-    name: c.category,
-    value: Math.abs(c.balance),
-    color: c.color,
-  }));
+  const spent = Math.abs(expenses);
+  const saved = Math.max(income - spent, 0);
+  const total = income;
 
-  const total = data.reduce((sum, t) => sum + t.value, 0);
-
-  if (data.length === 0) {
+  if (total === 0) {
     return (
       <div className={styles.empty}>
-        <p>No expenses yet</p>
+        <p>No income data yet</p>
       </div>
     );
   }
+
+  const data = [
+    {
+      name: "Saved",
+      value: saved,
+      color: "#2fbf8f",
+    },
+    {
+      name: "Spent",
+      value: spent,
+      color: "#f76d6d",
+    },
+  ];
 
   return (
     <div className={styles.chartRoot}>
@@ -30,6 +40,7 @@ export function CategoryDonutChart({
             dataKey="value"
             innerRadius="65%"
             outerRadius="100%"
+            stroke="transparent"
             paddingAngle={4}
             cornerRadius={6}
             animationDuration={800}
@@ -40,8 +51,9 @@ export function CategoryDonutChart({
               <Cell key={index} fill={entry.color} />
             ))}
           </Pie>
+
           <Tooltip
-            formatter={(value, name) => [`-$${value.toFixed(2)}`, name]}
+            formatter={(value, name) => [`$${value.toFixed(2)}`, name]}
             contentStyle={{
               borderRadius: 5,
               border: "none",
@@ -52,10 +64,10 @@ export function CategoryDonutChart({
       </ResponsiveContainer>
 
       <div className={styles.center}>
-        <span className={styles.label}>Total spent</span>
         <span className={styles.value}>
-          {total > 0 ? "-" : ""}${total.toFixed(2)}
+          {((saved / total) * 100).toFixed(0)}%
         </span>
+        <span className={styles.label}>Savings</span>
       </div>
     </div>
   );

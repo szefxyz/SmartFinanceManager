@@ -1,7 +1,8 @@
 import { useMatches } from "react-router-dom";
 import { Button } from "../Button/Button.jsx";
-import styles from "./TopBar.module.css";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle.jsx";
+import styles from "./TopBar.module.css";
 
 export function TopBar() {
   const matches = useMatches();
@@ -24,6 +25,7 @@ export function TopBar() {
         >
           Add transaction
         </Button>
+        <ThemeToggle />
 
         <div className={styles.separator}></div>
 

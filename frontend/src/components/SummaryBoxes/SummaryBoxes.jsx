@@ -1,49 +1,31 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import styles from "./SummaryBoxes.module.css";
 import { Card } from "../Card/Card";
 
-export function SummaryBoxes() {
-  const [income, setIncome] = useState(0);
-  const [expense, setExpense] = useState(0);
-  const [avgDailySpend, setAvgDailySpend] = useState(0);
-
+export function SummaryBoxes({ transactions }) {
   const formatMoney = (value) =>
     `${value < 0 ? "-" : ""}$${Math.abs(value).toFixed(2)}`;
 
-  useEffect(() => {
-    const load = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (!user) return;
+  const { income, expense, avgDailyExpense } = useMemo(() => {
+    if (!transactions.length) {
+      return { income: 0, expense: 0, avgDailyExpense: 0 };
+    }
 
-      const res = await fetch(
-        `http://localhost:5092/api/transaction/${user.id}`
-      );
-      const data = await res.json();
+    const income = transactions
+      .filter((t) => t.amount > 0)
+      .reduce((sum, t) => sum + t.amount, 0);
 
-      const totalIncome = data
-        .filter((t) => t.amount > 0)
-        .reduce((sum, t) => sum + t.amount, 0);
+    const expenses = transactions.filter((t) => t.amount < 0);
+    const expense = expenses.reduce((sum, t) => sum + t.amount, 0);
 
-      const expenses = data.filter((t) => t.amount < 0);
+    const uniqueDays = new Set(
+      expenses.map((t) => new Date(t.date).toISOString().split("T")[0])
+    ).size;
 
-      const totalExpense = expenses.reduce((sum, t) => sum + t.amount, 0);
+    const avgDailyExpense = uniqueDays > 0 ? expense / uniqueDays : 0;
 
-      const uniqueDays = new Set(
-        expenses.map((t) => {
-          const d = new Date(t.date);
-          return d.toISOString().split("T")[0];
-        })
-      ).size;
-
-      const avgDaily = uniqueDays > 0 ? totalExpense / uniqueDays : 0;
-
-      setIncome(totalIncome);
-      setExpense(totalExpense);
-      setAvgDailySpend(avgDaily);
-    };
-
-    load();
-  }, []);
+    return { income, expense, avgDailyExpense };
+  }, [transactions]);
 
   return (
     <div className={styles.wrapper}>
@@ -64,9 +46,9 @@ export function SummaryBoxes() {
             }`}
           >
             {expense < 0 ? (
-              <i className="bxr  bx-arrow-down-right"></i>
+              <i className="bxr bx-arrow-down-right" />
             ) : (
-              <i className="bxr  bx-arrow-up-right"></i>
+              <i className="bxr bx-arrow-up-right" />
             )}
           </span>
         </div>
@@ -76,17 +58,19 @@ export function SummaryBoxes() {
         <span className={styles.title}>Avg Daily Spend</span>
 
         <div className={styles.valueRow}>
-          <h2 className={styles.valueNeutral}>{formatMoney(avgDailySpend)}</h2>
+          <h2 className={styles.valueNeutral}>
+            {formatMoney(avgDailyExpense)}
+          </h2>
 
           <span
             className={`${styles.trend} ${
-              avgDailySpend < 0 ? styles.trendDown : styles.trendUp
+              avgDailyExpense < 0 ? styles.trendDown : styles.trendUp
             }`}
           >
-            {avgDailySpend < 0 ? (
-              <i className="bxr  bx-arrow-down-right"></i>
+            {avgDailyExpense < 0 ? (
+              <i className="bxr bx-arrow-down-right" />
             ) : (
-              <i className="bxr  bx-arrow-up-right"></i>
+              <i className="bxr bx-arrow-up-right" />
             )}
           </span>
         </div>
