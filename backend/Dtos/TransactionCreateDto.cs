@@ -1,6 +1,6 @@
 namespace backend.Dtos;
 
-public class TransactionCreateDto
+public class TransactionCreateDto : ITransactionDto
 {
 	public string Title { get; set; } = string.Empty;
 	public decimal Amount { get; set; }

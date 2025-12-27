@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useMatches } from "react-router-dom";
 import TimeSwitcher from "../../components/TimeSwitcher/TimeSwitcher";
-import { categories } from "../../config/categories";
 import { getStartDate } from "../../utils/dateFilters";
+import { TransactionItem } from "../../components/TransactionItem/TransactionItem";
 import styles from "./Transaction.module.css";
 
 export function Transaction() {
@@ -10,33 +10,71 @@ export function Transaction() {
   const current = matches.find((m) => m.handle?.title);
   const showFilters = current?.handle?.showTimeFilters || false;
 
+  const [editingId, setEditingId] = useState(null);
+  const [editForm, setEditForm] = useState({});
   const [transactions, setTransactions] = useState([]);
   const [timeFrame, setTimeframe] = useState("Week");
-  const [error, setError] = useState("");
+
+  const handleEdit = (transaction) => {
+    setEditingId(transaction.id);
+    setEditForm({
+      title: transaction.title,
+      amount: Math.abs(transaction.amount),
+      category: transaction.category,
+      date: transaction.date.slice(0, 10),
+    });
+  };
+
+  const saveEdit = async (id) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const res = await fetch(
+        `http://localhost:5092/api/transaction/${user.id}/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...editForm,
+            amount:
+              editForm.category === "Income"
+                ? Math.abs(editForm.amount)
+                : -Math.abs(editForm.amount),
+          }),
+        }
+      );
+
+      const updated = await res.json();
+
+      setTransactions((prev) =>
+        prev.map((t) => (t.id === updated.id ? updated : t))
+      );
+      setEditingId(null);
+    } catch {
+      alert("Update failed");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm("Delete this transaction?");
+    if (!confirmed) return;
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    await fetch(`http://localhost:5092/api/transaction/${user.id}/${id}`, {
+      method: "DELETE",
+    });
+
+    setTransactions((prev) => prev.filter((t) => t.id !== id));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (!user) return;
-
-        const res = await fetch(
-          `http://localhost:5092/api/transaction/${user.id}`
-        );
-
-        if (!res.ok) {
-          setError("Failed to load transactions");
-          return;
-        }
-
-        const data = await res.json();
-
-        const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        setTransactions(sorted);
-      } catch {
-        setError("Server error");
-      }
+      const user = JSON.parse(localStorage.getItem("user"));
+      const res = await fetch(
+        `http://localhost:5092/api/transaction/${user.id}`
+      );
+      const data = await res.json();
+      setTransactions(data.sort((a, b) => new Date(b.date) - new Date(a.date)));
     };
 
     fetchData();
@@ -47,55 +85,30 @@ export function Transaction() {
     : transactions;
 
   return (
-    <>
-      <section className={styles.container}>
-        {showFilters && (
-          <TimeSwitcher value={timeFrame} onChange={setTimeframe} />
+    <section className={styles.container}>
+      {showFilters && (
+        <TimeSwitcher value={timeFrame} onChange={setTimeframe} />
+      )}
+
+      <ul className={styles.transactionList}>
+        {filteredTransactions.length === 0 ? (
+          <li className={styles.noTransactions}>No transactions found</li>
+        ) : (
+          filteredTransactions.map((t) => (
+            <TransactionItem
+              key={t.id}
+              transaction={t}
+              isEditing={editingId === t.id}
+              editForm={editForm}
+              setEditForm={setEditForm}
+              onEdit={() => handleEdit(t)}
+              onSave={() => saveEdit(t.id)}
+              onCancel={() => setEditingId(null)}
+              onDelete={() => handleDelete(t.id)}
+            />
+          ))
         )}
-
-        {error && <p className={styles.error}>{error}</p>}
-        {!error && filteredTransactions.length === 0 && (
-          <p className={styles.noTransactions}>You have no transactions yet.</p>
-        )}
-
-        <ul className={styles.transactionList}>
-          {filteredTransactions.map((t) => (
-            <li key={t.id} className={styles.transactionItem}>
-              <div className={styles.transactionDetails}>
-                <div className={styles.icon}>
-                  <i
-                    className={
-                      categories[t.category]?.icon || categories.Default.icon
-                    }
-                  ></i>
-                </div>
-                <div className={styles.transactionInfo}>
-                  <p className={styles.transactionTitle}>{t.title}</p>
-                  <span className={styles.transactionCategory}>
-                    {t.category}
-                  </span>
-                </div>
-              </div>
-
-              <div className={styles.transactionMeta}>
-                <span
-                  className={
-                    t.amount < 0
-                      ? styles.transactionAmountNegative
-                      : styles.transactionAmountPositive
-                  }
-                >
-                  {t.amount < 0 ? "- " : "+ "}${Math.abs(t.amount)}
-                </span>
-
-                <span className={styles.transactionDate}>
-                  {new Date(t.date).toLocaleDateString()}
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </>
+      </ul>
+    </section>
   );
 }

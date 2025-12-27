@@ -1,5 +1,13 @@
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import {
+  MdDashboard,
+  MdAccountBalanceWallet,
+  MdReceiptLong,
+  MdLayers,
+  MdLogout,
+} from "react-icons/md";
+import { IoAnalyticsOutline } from "react-icons/io5";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -14,7 +22,7 @@ export default function Navbar() {
   return (
     <nav className={styles.sidebarContainer}>
       <div className={styles.sidebarHeader}>
-        <i className="bx bxs-wallet"></i>
+        <MdAccountBalanceWallet />
       </div>
 
       <ul className={styles.navList}>
@@ -26,7 +34,9 @@ export default function Navbar() {
               `${styles.navLink} ${isActive ? styles.active : ""}`
             }
           >
-            <i className={`bx bxs-dashboard ${styles.navIcon}`}></i>
+            <span className={styles.navIcon}>
+              <MdDashboard />
+            </span>
             <span className={styles.tooltip}>Dashboard</span>
           </NavLink>
         </li>
@@ -38,8 +48,10 @@ export default function Navbar() {
               `${styles.navLink} ${isActive ? styles.active : ""}`
             }
           >
-            <i className={`bx bx-wallet-note ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Transaction</span>
+            <span className={styles.navIcon}>
+              <MdReceiptLong />
+            </span>
+            <span className={styles.tooltip}>Transactions</span>
           </NavLink>
         </li>
 
@@ -50,8 +62,10 @@ export default function Navbar() {
               `${styles.navLink} ${isActive ? styles.active : ""}`
             }
           >
-            <i className={`bx bx-layers ${styles.navIcon}`}></i>
-            <span className={styles.tooltip}>Expense Categories</span>
+            <span className={styles.navIcon}>
+              <MdLayers />
+            </span>
+            <span className={styles.tooltip}>Categories</span>
           </NavLink>
         </li>
 
@@ -62,7 +76,9 @@ export default function Navbar() {
               `${styles.navLink} ${isActive ? styles.active : ""}`
             }
           >
-            <i className={`bx bxs-chart-line ${styles.navIcon}`}></i>
+            <span className={styles.navIcon}>
+              <IoAnalyticsOutline />
+            </span>
             <span className={styles.tooltip}>Analytics</span>
           </NavLink>
         </li>
@@ -70,12 +86,12 @@ export default function Navbar() {
 
       <ul className={styles.bottomNav}>
         <li className={styles.navItem}>
-          <NavLink onClick={handleLogout} className={styles.navLink}>
-            <i
-              className={`bx bx-arrow-out-right-square-half ${styles.navIcon}`}
-            ></i>
-            <span className={styles.tooltip}>Log Out</span>
-          </NavLink>
+          <button className={styles.navLink} onClick={handleLogout}>
+            <span className={styles.navIcon}>
+              <MdLogout />
+            </span>
+            <span className={styles.tooltip}>Logout</span>
+          </button>
         </li>
       </ul>
     </nav>

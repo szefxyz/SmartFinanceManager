@@ -45,6 +45,11 @@
   line-height: 1;
 }
 
+.trend svg {
+  width: 18px;
+  height: 18px;
+}
+
 .trendDown {
   color: var(--color-danger);
   background: rgba(247, 109, 109, 0.12);

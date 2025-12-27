@@ -37,7 +37,7 @@ namespace backend.Controllers.Api
 			_db.Transactions.Add(transaction);
 			await _db.SaveChangesAsync();
 
-			return Ok(new { message = "Transaction added successfully." });
+			return Ok(transaction);
 		}
 
 		[HttpGet("{userId}")]
@@ -63,7 +63,34 @@ namespace backend.Controllers.Api
 			_db.Transactions.Remove(trx);
 			await _db.SaveChangesAsync();
 
-			return Ok(new { message = "Transaction deleted successfully." });
+			return Ok();
+		}
+
+		[HttpPut("{userId}/{id}")]
+		public async Task<IActionResult> Update(
+			int userId,
+			int id,
+			TransactionUpdateDto dto
+		)
+		{
+			var trx = await _db.Transactions
+				.FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
+
+			if (trx == null)
+				return NotFound(new { message = "Transaction not found or unauthorized." });
+
+			var error = TransactionValidator.Validate(dto);
+			if (error != null)
+				return BadRequest(new { message = error });
+
+			trx.Title = dto.Title;
+			trx.Amount = dto.Amount;
+			trx.Category = dto.Category;
+			trx.Date = dto.Date;
+
+			await _db.SaveChangesAsync();
+
+			return Ok(trx);
 		}
 	}
 }

@@ -30,3 +30,14 @@
   gap: 32px;
   align-self: flex-start;
 }
+
+.loading {
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.error {
+  color: var(--color-danger);
+  font-size: 1.2rem;
+}

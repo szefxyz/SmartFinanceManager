@@ -22,33 +22,37 @@ export function LatestTransactions({ transactions }) {
           <p className={styles.noTransactions}>You have no transactions yet.</p>
         )}
 
-        {latest.map((t) => (
-          <div key={t.id} className={styles.transactionItem}>
-            <div className={styles.transactionDetails}>
-              <i
-                className={
-                  categories[t.category]?.icon || categories.Default.icon
-                }
-              ></i>
+        {latest.map((t) => {
+          const { Icon } = categories[t.category] || categories.Default;
 
-              <div className={styles.transactionInfo}>
-                <h3 className={styles.transactionTitle}>{t.title}</h3>
-                <span className={styles.transactionAccount}>{t.category}</span>
+          return (
+            <div key={t.id} className={styles.transactionItem}>
+              <div className={styles.transactionDetails}>
+                <span className={styles.categoryIcon}>
+                  <Icon />
+                </span>
+
+                <div className={styles.transactionInfo}>
+                  <h3 className={styles.transactionTitle}>{t.title}</h3>
+                  <span className={styles.transactionAccount}>
+                    {t.category}
+                  </span>
+                </div>
+              </div>
+
+              <div className={styles.transactionAmount}>
+                <p
+                  className={`${styles.amount} ${
+                    t.amount < 0 ? styles.negative : styles.positive
+                  }`}
+                >
+                  {t.amount < 0 ? "-" : ""}${Math.abs(t.amount).toFixed(2)}
+                </p>
+                <span>{new Date(t.date).toLocaleDateString()}</span>
               </div>
             </div>
-
-            <div className={styles.transactionAmount}>
-              <p
-                className={`${styles.amount} ${
-                  t.amount < 0 ? styles.negative : styles.positive
-                }`}
-              >
-                {t.amount < 0 ? "-" : ""}${Math.abs(t.amount).toFixed(2)}
-              </p>
-              <span>{new Date(t.date).toLocaleDateString()}</span>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Card>
   );

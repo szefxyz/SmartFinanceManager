@@ -61,6 +61,23 @@
   color: var(--text-primary);
 }
 
+.categoryIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  color: #fff;
+}
+
+.categoryIcon svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+}
+
 .transactionInfo {
   display: flex;
   flex-direction: column;
@@ -108,12 +125,7 @@
 .noTransactions {
   padding: 12px 0;
   text-align: center;
-  color: #777;
-}
-
-.transactionTitle {
-  font-size: 1rem;
-  font-weight: 600;
+  color: var(--text-secondary);
 }
 
 .error {
@@ -164,9 +176,5 @@
 
   .transactionAmount span {
     font-size: 12px;
-  }
-
-  .latestTransactions i {
-    font-size: 20px;
   }
 }

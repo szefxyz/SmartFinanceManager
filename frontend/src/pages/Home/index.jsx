@@ -43,8 +43,8 @@ export function Home() {
     fetchTransactions();
   }, [fetchTransactions]);
 
-  if (loading) return <p>Loading dashboard...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className={styles.loading}>Loading dashboard...</p>;
+  if (error) return <p className={styles.error}>{error}</p>;
 
   return (
     <div className={styles.dashboardGrid}>

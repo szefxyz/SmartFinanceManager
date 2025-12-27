@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 import styles from "./ThemeToggle.module.css";
 
 export function ThemeToggle() {
@@ -27,7 +28,7 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
       title="Toggle light / dark mode"
     >
-      <i className={`bx ${theme === "dark" ? "bx-sun" : "bx-moon"}`}></i>
+      {theme === "dark" ? <MdLightMode /> : <MdDarkMode />}
     </button>
   );
 }

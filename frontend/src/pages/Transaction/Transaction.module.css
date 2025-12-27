@@ -18,7 +18,7 @@
 .noTransactions {
   padding: 12px 0;
   text-align: center;
-  color: #777;
+  color: var(--text-secondary);
 }
 
 .transactionList {
@@ -32,72 +32,14 @@
   margin-right: auto;
 }
 
-.transactionItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 24px;
-  background: var(--color-white);
-  border-radius: var(--border-radius-base);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  border: 1px solid var(--border-color);
+@media (max-width: 1024px) {
+  .container {
+    padding: 18px 0;
+  }
 }
 
-.transactionItem:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.transactionDetails {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.transactionInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.icon {
-  font-size: 24px;
-  color: var(--text-primary);
-}
-
-.transactionTitle {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.transactionCategory {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.transactionMeta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.transactionAmountPositive {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-success);
-}
-
-.transactionAmountNegative {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-danger);
-}
-
-.transactionDate {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+@media (max-width: 680px) {
+  .container {
+    gap: 0;
+  }
 }

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { TopBar } from "../../components/TopBar/TopBar";
 import styles from "./DashboardLayout.module.css";
+import { Footer } from "../../components/Footer/Footer";
 
 export function DashboardLayout() {
   return (
@@ -13,6 +14,7 @@ export function DashboardLayout() {
           <Outlet />
         </div>
       </main>
+      <Footer />
     </>
   );
 }

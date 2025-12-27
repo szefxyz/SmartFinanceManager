@@ -145,8 +145,9 @@
   transition: all 0.15s ease;
 }
 
-.categoryItem i {
-  font-size: 18px;
+.categoryItem svg {
+  width: 18px;
+  height: 18px;
 }
 
 .categoryItem:hover {

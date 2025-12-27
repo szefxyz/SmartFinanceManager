@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import styles from "./SummaryBoxes.module.css";
 import { Card } from "../Card/Card";
+import { MdTrendingUp, MdTrendingDown } from "react-icons/md";
 
 export function SummaryBoxes({ transactions }) {
   const formatMoney = (value) =>
@@ -11,18 +12,25 @@ export function SummaryBoxes({ transactions }) {
       return { income: 0, expense: 0, avgDailyExpense: 0 };
     }
 
-    const income = transactions
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const daysSoFar = now.getDate();
+
+    const currentMonthTx = transactions.filter((t) => {
+      const d = new Date(t.date);
+      return d.getFullYear() === year && d.getMonth() === month;
+    });
+
+    const income = currentMonthTx
       .filter((t) => t.amount > 0)
       .reduce((sum, t) => sum + t.amount, 0);
 
-    const expenses = transactions.filter((t) => t.amount < 0);
-    const expense = expenses.reduce((sum, t) => sum + t.amount, 0);
+    const expense = currentMonthTx
+      .filter((t) => t.amount < 0)
+      .reduce((sum, t) => sum + t.amount, 0);
 
-    const uniqueDays = new Set(
-      expenses.map((t) => new Date(t.date).toISOString().split("T")[0])
-    ).size;
-
-    const avgDailyExpense = uniqueDays > 0 ? expense / uniqueDays : 0;
+    const avgDailyExpense = daysSoFar > 0 ? expense / daysSoFar : 0;
 
     return { income, expense, avgDailyExpense };
   }, [transactions]);
@@ -45,11 +53,7 @@ export function SummaryBoxes({ transactions }) {
               expense < 0 ? styles.trendDown : styles.trendUp
             }`}
           >
-            {expense < 0 ? (
-              <i className="bxr bx-arrow-down-right" />
-            ) : (
-              <i className="bxr bx-arrow-up-right" />
-            )}
+            {expense < 0 ? <MdTrendingDown /> : <MdTrendingUp />}
           </span>
         </div>
       </Card>
@@ -67,11 +71,7 @@ export function SummaryBoxes({ transactions }) {
               avgDailyExpense < 0 ? styles.trendDown : styles.trendUp
             }`}
           >
-            {avgDailyExpense < 0 ? (
-              <i className="bxr bx-arrow-down-right" />
-            ) : (
-              <i className="bxr bx-arrow-up-right" />
-            )}
+            {avgDailyExpense < 0 ? <MdTrendingDown /> : <MdTrendingUp />}
           </span>
         </div>
       </Card>

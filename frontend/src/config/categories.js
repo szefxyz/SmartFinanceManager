@@ -1,33 +1,46 @@
+import {
+  MdRestaurantMenu,
+  MdLocalMall,
+  MdAutoStories,
+  MdCommute,
+  MdTheaters,
+  MdAccountBalance,
+  MdCategory,
+} from "react-icons/md";
+
 export const categories = {
   Food: {
-    icon: "bx bx-bowl-hot",
+    Icon: MdRestaurantMenu,
     hex: "#22C55E",
   },
   Shopping: {
-    icon: "bx bx-shopping-bag",
+    Icon: MdLocalMall,
     hex: "#3B82F6",
   },
   Education: {
-    icon: "bx bx-book",
+    Icon: MdAutoStories,
     hex: "#8B5CF6",
   },
   Transport: {
-    icon: "bx bx-car",
+    Icon: MdCommute,
     hex: "#EF4444",
   },
   Entertainment: {
-    icon: "bx bx-film",
+    Icon: MdTheaters,
     hex: "#EC4899",
   },
   Income: {
-    icon: "bx bx-dollar-circle",
+    Icon: MdAccountBalance,
     hex: "#F59E0B",
+  },
+  Default: {
+    Icon: MdCategory,
+    hex: "#6B7280",
   },
 };
 
-/* 🔥 NOWE – do gridów / formularzy */
 export const categoryList = Object.entries(categories).map(([key, value]) => ({
   key,
-  icon: value.icon,
+  Icon: value.Icon,
   hex: value.hex,
 }));

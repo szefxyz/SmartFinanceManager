@@ -2,6 +2,7 @@ import { useMatches } from "react-router-dom";
 import { Button } from "../Button/Button.jsx";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle.jsx";
+import { MdAdd } from "react-icons/md";
 import styles from "./TopBar.module.css";
 
 export function TopBar() {
@@ -19,12 +20,13 @@ export function TopBar() {
       <div className={styles.rightSection}>
         <Button
           href="/add-transaction"
-          icon={<i className="bx bx-plus"></i>}
+          icon={<MdAdd />}
           iconPosition="right"
           variant="secondary"
         >
           Add transaction
         </Button>
+
         <ThemeToggle />
 
         <div className={styles.separator}></div>

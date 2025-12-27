@@ -1,5 +1,10 @@
 import { useMemo } from "react";
 import { Card } from "../Card/Card";
+import {
+  MdTrendingUp,
+  MdTrendingDown,
+  MdRadioButtonChecked,
+} from "react-icons/md";
 import styles from "./NoSpendDaysBox.module.css";
 
 export function NoSpendDaysBox({ transactions }) {
@@ -7,23 +12,26 @@ export function NoSpendDaysBox({ transactions }) {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth();
-
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = now.getDate(); // np. 27
 
     const spendDays = new Set(
       transactions
         .filter((t) => t.amount < 0)
         .map((t) => {
           const d = new Date(t.date);
-          if (d.getMonth() === month && d.getFullYear() === year) {
-            return d.toISOString().split("T")[0];
+
+          if (d.getFullYear() === year && d.getMonth() === month) {
+            // lokalna data YYYY-MM-DD
+            return d.toLocaleDateString("en-CA");
           }
+
           return null;
         })
         .filter(Boolean)
     );
 
-    const noSpendDays = daysInMonth - spendDays.size;
+    // liczymy tylko dni, które już minęły
+    const noSpendDays = Math.max(0, today - spendDays.size);
 
     let status = "bad";
     if (noSpendDays >= 10) status = "good";
@@ -48,13 +56,9 @@ export function NoSpendDaysBox({ transactions }) {
               : ""
           }`}
         >
-          {summary.status === "good" && <i className="bxr bx-arrow-up-right" />}
-          {summary.status === "bad" && (
-            <i className="bxr bx-arrow-down-right" />
-          )}
-          {summary.status === "ok" && (
-            <i className="bxr bx-radio-circle-marked" />
-          )}
+          {summary.status === "good" && <MdTrendingUp />}
+          {summary.status === "bad" && <MdTrendingDown />}
+          {summary.status === "ok" && <MdRadioButtonChecked />}
         </span>
       </div>
     </Card>

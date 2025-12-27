@@ -82,17 +82,8 @@ export default function TransactionForm() {
       </div>
 
       {(error || success) && (
-        <div
-          className={styles.notifications}
-          role="status"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          {error && (
-            <div className={styles.error} role="alert">
-              {error}
-            </div>
-          )}
+        <div className={styles.notifications}>
+          {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}
         </div>
       )}
@@ -100,7 +91,7 @@ export default function TransactionForm() {
       <form className={styles.formGrid} onSubmit={handleSubmit}>
         <div className={styles.leftColumn}>
           <div className={styles.field}>
-            <label htmlFor="title">Title</label>
+            <label>Title</label>
             <input
               type="text"
               minLength={2}
@@ -113,7 +104,7 @@ export default function TransactionForm() {
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="amount">Amount</label>
+            <label>Amount</label>
 
             <div className={styles.amountInputWrapper}>
               <span className={styles.currency}>$</span>
@@ -121,7 +112,6 @@ export default function TransactionForm() {
                 type="number"
                 placeholder="0.00"
                 value={amount}
-                aria-description="Enter the transaction amount"
                 onChange={(e) => setAmount(e.target.value)}
                 min="0"
                 step="0.01"
@@ -134,8 +124,6 @@ export default function TransactionForm() {
                 <button
                   key={value}
                   type="button"
-                  aria-pressed={Number(amount) === value}
-                  aria-label={`Set amount to ${value} dollars`}
                   className={`${styles.preset} ${
                     Number(amount) === value ? styles.active : ""
                   }`}
@@ -152,28 +140,29 @@ export default function TransactionForm() {
           <div className={styles.field}>
             <label>Category</label>
 
-            <div
-              aria-label="Transaction category"
-              className={styles.categoryGrid}
-            >
-              {categoryList.map((c) => (
-                <button
-                  key={c.key}
-                  type="button"
-                  className={`${styles.categoryItem} ${
-                    category === c.key ? styles.active : ""
-                  }`}
-                  onClick={() => setCategory(c.key)}
-                >
-                  <i className={c.icon}></i>
-                  <span>{c.key}</span>
-                </button>
-              ))}
+            <div className={styles.categoryGrid}>
+              {categoryList.map((c) => {
+                const Icon = c.Icon;
+
+                return (
+                  <button
+                    key={c.key}
+                    type="button"
+                    className={`${styles.categoryItem} ${
+                      category === c.key ? styles.active : ""
+                    }`}
+                    onClick={() => setCategory(c.key)}
+                  >
+                    <Icon />
+                    <span>{c.key}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="date">Date</label>
+            <label>Date</label>
             <input
               type="date"
               max={new Date().toISOString().split("T")[0]}
@@ -184,12 +173,7 @@ export default function TransactionForm() {
           </div>
 
           <div className={styles.actions}>
-            <Button
-              className={!amount ? styles.disabled : ""}
-              type="submit"
-              disabled={!amount}
-              aria-disabled={!amount}
-            >
+            <Button type="submit" disabled={!amount}>
               Add Transaction
             </Button>
           </div>
