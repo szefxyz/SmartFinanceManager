@@ -13,7 +13,7 @@ export function Transaction() {
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
   const [transactions, setTransactions] = useState([]);
-  const [timeFrame, setTimeframe] = useState("Week");
+  const [timeFrame, setTimeframe] = useState("Month");
 
   const handleEdit = (transaction) => {
     setEditingId(transaction.id);

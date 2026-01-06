@@ -12,25 +12,19 @@ export function SummaryBoxes({ transactions }) {
       return { income: 0, expense: 0, avgDailyExpense: 0 };
     }
 
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
-    const daysSoFar = now.getDate();
-
-    const currentMonthTx = transactions.filter((t) => {
-      const d = new Date(t.date);
-      return d.getFullYear() === year && d.getMonth() === month;
-    });
-
-    const income = currentMonthTx
+    const income = transactions
       .filter((t) => t.amount > 0)
-      .reduce((sum, t) => sum + t.amount, 0);
+      .reduce((s, t) => s + t.amount, 0);
 
-    const expense = currentMonthTx
+    const expense = transactions
       .filter((t) => t.amount < 0)
-      .reduce((sum, t) => sum + t.amount, 0);
+      .reduce((s, t) => s + t.amount, 0);
 
-    const avgDailyExpense = daysSoFar > 0 ? expense / daysSoFar : 0;
+    const days = new Set(
+      transactions.map((t) => new Date(t.date).toLocaleDateString("en-CA"))
+    ).size;
+
+    const avgDailyExpense = days > 0 ? expense / days : 0;
 
     return { income, expense, avgDailyExpense };
   }, [transactions]);

@@ -6,6 +6,7 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { Home } from "./pages/Home";
 import { Transaction } from "./pages/Transaction";
+import { Categories } from "./pages/Categories/index.jsx";
 import { AddTransactionPage } from "./pages/AddTransactionPage";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
         path: "transactions",
         element: <Transaction />,
         handle: { title: "Transaction", showTimeFilters: true },
+      },
+      {
+        path: "categories",
+        element: <Categories />,
+        handle: { title: "Categories", showTimeFilters: false },
       },
       {
         path: "add-transaction",
