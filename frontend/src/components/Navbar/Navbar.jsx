@@ -68,20 +68,6 @@ export default function Navbar() {
             <span className={styles.tooltip}>Categories</span>
           </NavLink>
         </li>
-
-        <li className={styles.navItem}>
-          <NavLink
-            to="/analytics"
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.active : ""}`
-            }
-          >
-            <span className={styles.navIcon}>
-              <IoAnalyticsOutline />
-            </span>
-            <span className={styles.tooltip}>Analytics</span>
-          </NavLink>
-        </li>
       </ul>
 
       <ul className={styles.bottomNav}>
