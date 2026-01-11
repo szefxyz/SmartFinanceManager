@@ -1,5 +1,11 @@
 # Odpalanie
 
-npm run dev
+## Terminal 1
+`cd backend`
+`dotnet run`
 
-# Wszytsko odpala się automatycznie!
+`cd frontend`
+`npm install`
+
+## Terminal 2
+`npm run dev`
